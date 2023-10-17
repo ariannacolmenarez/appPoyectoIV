@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../../constants.dart';
 import 'CategoriasModel.dart';
+import 'Inventario.dart';
 
 // We need satefull widget for our categories
 
@@ -17,7 +18,7 @@ class _CategoriesState extends State<Categories> {
   Future<List<Categorias>>catFuture = getCategorias();
 
   static Future<List<Categorias>> getCategorias() async {
-    const url = 'https://joseviveresmarket.000webhostapp.com/categorias/listar?api=1';
+    const url = 'https://joseviveresmarket.000webhostapp.com/api/categorias';
     final response = await http.get(Uri.parse(url));
 
     final body = json.decode(response.body);
@@ -30,6 +31,8 @@ class _CategoriesState extends State<Categories> {
   // Future<List<Categorias>> categories = catFuture;
   // By default our first item will be selected
   int selectedIndex = 0;
+  int catId = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +68,16 @@ class _CategoriesState extends State<Categories> {
               onTap: () {
                 setState(() {
                   selectedIndex = index;
+                  catId=Categorias[index].id;
                 });
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                child: Column(
+                child:
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      Categorias[index].categoria,
+                    Text(Categorias[index].categoria,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: selectedIndex == index

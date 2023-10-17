@@ -1,23 +1,24 @@
-import 'package:app_movil/Cuentas/Cuentas.dart';
+import 'package:app_movil/Balance/Balance.dart';
+import 'package:app_movil/Balance/Balance2.dart';
 import 'package:app_movil/Inventario/Inventario.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Balance extends StatefulWidget {
-  const Balance({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<Balance> createState() => _MyHomePageState();
+  State<Home> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<Balance> {
+class _MyHomePageState extends State<Home> {
 
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    final views = [ Inventario(), Cuentas()];
+    final views = [ Balance(), Inventario(0)];
 
     return Scaffold(
       body:IndexedStack(
@@ -35,17 +36,16 @@ class _MyHomePageState extends State<Balance> {
         unselectedItemColor: Colors.black54,
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.inventory_2),
-            activeIcon: const Icon(Icons.inventory_2_outlined),
-            label:'Inventario',
-            backgroundColor: colors.primary,
+            icon: const Icon(Icons.list_alt),
+            activeIcon: const Icon(Icons.list_alt_outlined, color: Colors.yellow),
+            label:'Balance',
+            backgroundColor: Color(0xFFA4A4A4),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.list_alt),
-            activeIcon: const Icon(Icons.list_alt_outlined),
-            label:'Cuentas',
-            backgroundColor: colors.primary,
-
+            icon: const Icon(Icons.inventory_2),
+            activeIcon: const Icon(Icons.inventory_2_outlined,color: Colors.yellow),
+            label:'Inventario',
+            backgroundColor:  Color(0xFFA4A4A4),
           ),
         ],
       ),

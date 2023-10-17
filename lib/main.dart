@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app_movil/constants.dart';
-import 'package:app_movil/Home/Balance.dart';
+import 'package:app_movil/Home/Home.dart';
 
 import 'login/Login.dart';
 

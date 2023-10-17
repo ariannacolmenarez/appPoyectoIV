@@ -1,4 +1,4 @@
-import 'package:app_movil/Home/Balance.dart';
+import 'package:app_movil/Home/Home.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -25,7 +25,28 @@ class _LoginPageState extends State<Login> {
 
   void ingresar (usuario, pass) async {
     try{
+
       var url = "https://joseviveresmarket.000webhostapp.com/login?api";
+
+      // getKey(usuario).then((encrypteduser) {
+      //   getKey(usuario).then((encryptedpass) async {
+      //     print("en camino");
+      //
+      //     var response = await http.post(Uri.parse(url),
+      //         body:{'usuario' :encrypteduser,'pass':encryptedpass}
+      //     ).timeout(const Duration(seconds: 90));print(response.body);if(response.body == '1'){
+      //
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (context) => Home()),
+      //       );
+      //     }else{
+      //
+      //       alerta();
+      //     }
+      //   });
+      // });
+
       var encryptedUser = Encryption.instance.encrypt(usuario);
       var encryptedPass = Encryption.instance.encrypt(pass);
       // var keyPub = getKey();
@@ -40,7 +61,7 @@ class _LoginPageState extends State<Login> {
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Balance()),
+          MaterialPageRoute(builder: (context) => Home()),
         );
       }else{
 
@@ -134,11 +155,11 @@ class _LoginPageState extends State<Login> {
         Text(
           "Bienvenid@s",
           style: TextStyle(
-              color: myColor, fontSize: 42, fontWeight: FontWeight.w500),
+              color: Colors.grey, fontSize: 42, fontWeight: FontWeight.w500),
         ),
         _buildGreyText("Inicio de sesión"),
         const SizedBox(height: 50),
-        _buildGreyText("Correo Electrónico"),
+        _buildGreyText("Usuario"),
         _buildInputField(emailController),
         const SizedBox(height: 40),
         _buildGreyText("Contraseña"),
